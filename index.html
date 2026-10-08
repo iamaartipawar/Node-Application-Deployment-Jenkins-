@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="AartiTechOps - Cloud, DevOps, CI/CD and Infrastructure Control Center"
+  >
+
+  <title>AartiTechOps | Cloud & DevOps Control Center</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    /* =========================
+       GLOBAL
+    ========================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+
+      --background: #050914;
+      --background-two: #08101d;
+
+      --card: rgba(13, 22, 38, 0.82);
+
+      --border: rgba(255,255,255,0.08);
+
+      --text: #f5f8ff;
+
+      --muted: #8d9bb0;
+
+      --blue: #4d8dff;
+
+      --cyan: #32d8ff;
+
+      --green: #35d28a;
+
+      --purple: #9b7cff;
+
+      --orange: #ffad42;
+
+      --red: #ff5d73;
+
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+
+      font-family: "Inter", sans-serif;
+
+      color: var(--text);
+
+      min-height: 100vh;
+
+      background:
+
+        radial-gradient(
+          circle at 10% 5%,
+          rgba(77,141,255,0.15),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(50,216,255,0.10),
+          transparent 25%
+        ),
+
+        radial-gradient(
+          circle at 50% 90%,
+          rgba(155,124,255,0.08),
+          transparent 30%
+        ),
+
+        var(--background);
+
+      overflow-x: hidden;
+    }
+
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    nav {
+
+      height: 76px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding: 0 7%;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 100;
+
+      background: rgba(5,9,20,0.78);
+
+      backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+    }
+
+    .brand-logo {
+
+      width: 42px;
+
+      height: 42px;
+
+      border-radius: 12px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 15px;
+
+      font-weight: 800;
+
+      color: #06101d;
+
+      background:
+
+        linear-gradient(
+          135deg,
+          var(--blue),
+          var(--cyan)
+        );
+
+      box-shadow:
+
+        0 0 28px
+        rgba(50,216,255,0.25);
+    }
+
+    .brand-name {
+
+      font-size: 18px;
+
+      font-weight: 800;
+
+      letter-spacing: -0.5px;
+    }
+
+    .brand-name span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 30px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+    .nav-links a {
+
+      color: inherit;
+
+      text-decoration: none;
+
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .system-status {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      font-size: 12px;
+
+      color: #b6c3d7;
+    }
+
+    .status-dot {
+
+      width: 8px;
+
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: var(--green);
+
+      box-shadow:
+
+        0 0 12px
+        rgba(53,210,138,0.9);
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+
+      max-width: 1180px;
+
+      margin: auto;
+
+      padding:
+        100px 25px
+        75px;
+
+      display: grid;
+
+      grid-template-columns:
+        1.15fr
+        0.85fr;
+
+      gap: 65px;
+
+      align-items: center;
+    }
+
+    .eyebrow {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      padding: 8px 14px;
+
+      border-radius: 50px;
+
+      border: 1px solid
+        rgba(77,141,255,0.25);
+
+      background:
+        rgba(77,141,255,0.07);
+
+      color: #9dbbff;
+
+      font-size: 11px;
+
+      font-family:
+        "JetBrains Mono",
+        monospace;
+
+      letter-spacing: 0.4px;
+
+      margin-bottom: 22px;
+    }
+
+    .eyebrow-dot {
+
+      width: 6px;
+
+      height: 6px;
+
+      border-radius: 50%;
+
+      background: var(--cyan);
+
+      box-shadow:
+        0 0 10px var(--cyan);
+    }
+
+    h1 {
+
+      font-size:
+        clamp(44px, 5vw, 72px);
+
+      line-height: 1.02;
+
+      letter-spacing: -4px;
+
+      max-width: 700px;
+    }
+
+    h1 .gradient {
+
+      background:
+
+        linear-gradient(
+          90deg,
+          #ffffff,
+          #71b1ff,
+          #40e4ff
+        );
+
+      -webkit-background-clip: text;
+
+      background-clip: text;
+
+      color: transparent;
+    }
+
+    .hero-description {
+
+      max-width: 620px;
+
+      margin-top: 25px;
+
+      color: var(--muted);
+
+      font-size: 16px;
+
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+
+      display: flex;
+
+      gap: 13px;
+
+      margin-top: 34px;
+    }
+
+    .button {
+
+      padding: 13px 21px;
+
+      border-radius: 9px;
+
+      text-decoration: none;
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      transition: 0.25s;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+    }
+
+    .button-primary {
+
+      color: #06101b;
+
+      background:
+
+        linear-gradient(
+          135deg,
+          var(--blue),
+          var(--cyan)
+        );
+
+      box-shadow:
+        0 10px 35px
+        rgba(50,216,255,0.16);
+    }
+
+    .button-primary:hover {
+
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 15px 40px
+        rgba(50,216,255,0.25);
+    }
+
+    .button-secondary {
+
+      color: #ccd7e7;
+
+      background:
+        rgba(255,255,255,0.035);
+
+      border: 1px solid var(--border);
+    }
+
+    .button-secondary:hover {
+
+      background:
+        rgba(255,255,255,0.07);
+
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================
+       TERMINAL
+    ========================= */
+
+    .terminal {
+
+      border-radius: 18px;
+
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+
+      background:
+
+        linear-gradient(
+          145deg,
+          rgba(16,28,48,0.96),
+          rgba(7,13,24,0.98)
+        );
+
+      box-shadow:
+
+        0 35px 90px
+        rgba(0,0,0,0.4);
+
+      transform: rotate(1deg);
+    }
+
+    .terminal-header {
+
+      height: 48px;
+
+      display: flex;
+
+      align-items: center;
+
+      padding: 0 17px;
+
+      border-bottom:
+        1px solid var(--border);
+    }
+
+    .terminal-circle {
+
+      width: 9px;
+
+      height: 9px;
+
+      border-radius: 50%;
+
+      background: #526177;
+
+      margin-right: 7px;
+    }
+
+    .terminal-title {
+
+      margin: auto;
+
+      color: #65748b;
+
+      font-family:
+        "JetBrains Mono",
+        monospace;
+
+      font-size: 10px;
+    }
+
+    .terminal-content {
+
+      padding: 26px;
+
+      font-family:
+        "JetBrains Mono",
+        monospace;
+
+      font-size: 12px;
+
+      line-height: 2.1;
+    }
+
+    .terminal-command {
+      color: var(--cyan);
+    }
+
+    .terminal-success {
+      color: var(--green);
+    }
+
+    .terminal-info {
+      color: #738299;
+    }
+
+    .terminal-purple {
+      color: var(--purple);
+    }
+
+
+    /* =========================
+       SECTION
+    ========================= */
+
+    .section {
+
+      max-width: 1180px;
+
+      margin: auto;
+
+      padding:
+        35px 25px
+        85px;
+    }
+
+    .section-heading {
+
+      display: flex;
+
+      justify-content:
+        space-between;
+
+      align-items: end;
+
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+
+      font-size: 21px;
+
+      font-weight: 700;
+
+      letter-spacing: -0.5px;
+    }
+
+    .section-description {
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      margin-top: 6px;
+    }
+
+    .update-time {
+
+      color: #65738a;
+
+      font-family:
+        "JetBrains Mono";
+
+      font-size: 10px;
+    }
+
+
+    /* =========================
+       STAT CARDS
+    ========================= */
+
+    .stats-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 15px;
+    }
+
+    .stat-card {
+
+      padding: 22px;
+
+      border-radius: 14px;
+
+      border: 1px solid var(--border);
+
+      background:
+
+        linear-gradient(
+          145deg,
+          rgba(14,24,41,0.88),
+          rgba(8,14,25,0.88)
+        );
+
+      transition: 0.25s;
+    }
+
+    .stat-card:hover {
+
+      transform:
+        translateY(-4px);
+
+      border-color:
+        rgba(77,141,255,0.3);
+    }
+
+    .stat-label {
+
+      color: var(--muted);
+
+      font-size: 11px;
+
+      margin-bottom: 12px;
+    }
+
+    .stat-number {
+
+      font-size: 31px;
+
+      font-weight: 700;
+
+      letter-spacing: -1.5px;
+    }
+
+    .stat-footer {
+
+      margin-top: 14px;
+
+      display: flex;
+
+      justify-content:
+        space-between;
+
+      color: #6e7c92;
+
+      font-size: 10px;
+    }
+
+    .healthy {
+      color: var(--green);
+    }
+
+    .improvement {
+      color: var(--cyan);
+    }
+
+
+    /* =========================
+       TECHNOLOGY CARDS
+    ========================= */
+
+    .technology-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 15px;
+
+      margin-top: 15px;
+    }
+
+    .technology-card {
+
+      padding: 25px;
+
+      border-radius: 15px;
+
+      border: 1px solid var(--border);
+
+      background:
+        rgba(13,22,38,0.78);
+
+      transition: 0.25s;
+    }
+
+    .technology-card:hover {
+
+      transform:
+        translateY(-4px);
+
+      background:
+        rgba(17,29,49,0.9);
+    }
+
+    .tech-icon {
+
+      width: 44px;
+
+      height: 44px;
+
+      border-radius: 11px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 19px;
+
+      margin-bottom: 18px;
+
+      background:
+        rgba(77,141,255,0.1);
+
+      border: 1px solid
+        rgba(77,141,255,0.15);
+    }
+
+    .tech-title {
+
+      font-size: 15px;
+
+      font-weight: 600;
+
+      margin-bottom: 8px;
+    }
+
+    .tech-description {
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.7;
+    }
+
+    .tech-progress {
+
+      height: 5px;
+
+      background: #172237;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      margin-top: 19px;
+    }
+
+    .tech-progress span {
+
+      display: block;
+
+      height: 100%;
+
+      border-radius: inherit;
+
+      background:
+
+        linear-gradient(
+          90deg,
+          var(--blue),
+          var(--cyan)
+        );
+    }
+
+
+    /* =========================
+       PIPELINE
+    ========================= */
+
+    .pipeline {
+
+      margin-top: 15px;
+
+      padding: 26px;
+
+      border-radius: 15px;
+
+      border: 1px solid var(--border);
+
+      background:
+
+        linear-gradient(
+          135deg,
+          rgba(15,27,47,0.9),
+          rgba(8,14,25,0.9)
+        );
+    }
+
+    .pipeline-flow {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(5, 1fr);
+
+      gap: 10px;
+
+      margin-top: 22px;
+    }
+
+    .pipeline-stage {
+
+      text-align: center;
+
+      padding: 17px 8px;
+
+      border-radius: 10px;
+
+      border: 1px solid var(--border);
+
+      background:
+        rgba(255,255,255,0.025);
+    }
+
+    .stage-number {
+
+      width: 28px;
+
+      height: 28px;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      margin:
+        0 auto 9px;
+
+      color: var(--green);
+
+      background:
+        rgba(53,210,138,0.09);
+
+      font-family:
+        "JetBrains Mono";
+
+      font-size: 10px;
+    }
+
+    .stage-name {
+
+      font-size: 12px;
+
+      font-weight: 600;
+    }
+
+    .stage-status {
+
+      margin-top: 5px;
+
+      color: var(--green);
+
+      font-size: 9px;
+    }
+
+
+    /* =========================
+       CLOUD ARCHITECTURE
+    ========================= */
+
+    .architecture {
+
+      margin-top: 15px;
+
+      padding: 30px;
+
+      border-radius: 15px;
+
+      border: 1px solid var(--border);
+
+      background:
+        rgba(11,19,33,0.85);
+
+      text-align: center;
+    }
+
+    .architecture-flow {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 12px;
+
+      flex-wrap: wrap;
+
+      margin-top: 25px;
+    }
+
+    .architecture-node {
+
+      min-width: 130px;
+
+      padding: 16px;
+
+      border-radius: 10px;
+
+      border: 1px solid
+        rgba(77,141,255,0.18);
+
+      background:
+        rgba(77,141,255,0.06);
+    }
+
+    .node-icon {
+
+      font-size: 20px;
+
+      margin-bottom: 7px;
+    }
+
+    .node-title {
+
+      font-size: 11px;
+
+      font-weight: 600;
+    }
+
+    .node-subtitle {
+
+      color: var(--muted);
+
+      font-size: 9px;
+
+      margin-top: 4px;
+    }
+
+    .arrow {
+
+      color: var(--cyan);
+
+      font-size: 18px;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+
+      border-top:
+        1px solid var(--border);
+
+      padding:
+        28px 7%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content:
+        space-between;
+
+      color: #68768b;
+
+      font-size: 11px;
+    }
+
+    .footer-brand {
+
+      color: #c0cada;
+
+      font-weight: 700;
+    }
+
+    .footer-brand span {
+      color: var(--cyan);
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .hero {
+
+        grid-template-columns: 1fr;
+
+        padding-top: 70px;
+      }
+
+      .terminal {
+        transform: none;
+      }
+
+      .stats-grid {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .technology-grid {
+
+        grid-template-columns: 1fr;
+      }
+
+      .pipeline-flow {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+
+    @media (max-width: 550px) {
+
+      nav {
+        padding: 0 20px;
+      }
+
+      .system-status {
+        display: none;
+      }
+
+      .hero {
+
+        padding-left: 20px;
+
+        padding-right: 20px;
+      }
+
+      h1 {
+
+        font-size: 44px;
+
+        letter-spacing: -2.5px;
+      }
+
+      .hero-buttons {
+
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .stats-grid {
+
+        grid-template-columns: 1fr;
+      }
+
+      .pipeline-flow {
+
+        grid-template-columns: 1fr;
+      }
+
+      .architecture-flow {
+
+        flex-direction: column;
+      }
+
+      .arrow {
+        transform:
+          rotate(90deg);
+      }
+
+      footer {
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        text-align: center;
+      }
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       NAVIGATION
+  ========================= -->
+
+  <nav>
+
+    <div class="brand">
+
+      <div class="brand-logo">
+        AT
+      </div>
+
+      <div class="brand-name">
+        Aarti<span>TechOps</span>
+      </div>
+
+    </div>
+
+
+    <div class="nav-links">
+
+      <a href="#overview">
+        Overview
+      </a>
+
+      <a href="#infrastructure">
+        Infrastructure
+      </a>
+
+      <a href="#pipeline">
+        CI/CD
+      </a>
+
+      <a href="#architecture">
+        Architecture
+      </a>
+
+    </div>
+
+
+    <div class="system-status">
+
+      <div class="status-dot"></div>
+
+      Systems Operational
+
+    </div>
+
+  </nav>
+
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <section class="hero">
+
+    <div>
+
+      <div class="eyebrow">
+
+        <div class="eyebrow-dot"></div>
+
+        CLOUD & DEVOPS CONTROL CENTER
+
+      </div>
+
+
+      <h1>
+
+        Engineering
+
+        <span class="gradient">
+          Reliable
+        </span>
+
+        Cloud Infrastructure.
+
+      </h1>
+
+
+      <p class="hero-description">
+
+        Welcome to AartiTechOps — a modern cloud and
+        DevOps control center designed to visualize
+        infrastructure, automation, deployment pipelines
+        and application health.
+
+      </p>
+
+
+      <div class="hero-buttons">
+
+        <a
+          href="#overview"
+          class="button button-primary"
+        >
+          Explore Dashboard →
+        </a>
+
+        <a
+          href="#pipeline"
+          class="button button-secondary"
+        >
+          View CI/CD Pipeline
+        </a>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- TERMINAL -->
+
+    <div class="terminal">
+
+      <div class="terminal-header">
+
+        <div class="terminal-circle"></div>
+
+        <div class="terminal-circle"></div>
+
+        <div class="terminal-circle"></div>
+
+        <div class="terminal-title">
+          aartitechops@production
+        </div>
+
+      </div>
+
+
+      <div class="terminal-content">
+
+        <div>
+
+          <span class="terminal-command">
+            $
+          </span>
+
+          aarti-techops status
+
+        </div>
+
+
+        <div class="terminal-success">
+
+          ✓ Cloud infrastructure online
+
+        </div>
+
+
+        <div class="terminal-success">
+
+          ✓ Application nodes healthy
+
+        </div>
+
+
+        <div class="terminal-success">
+
+          ✓ Load balancer operational
+
+        </div>
+
+
+        <div class="terminal-success">
+
+          ✓ Database connection stable
+
+        </div>
+
+
+        <br>
+
+
+        <div>
+
+          <span class="terminal-command">
+            $
+          </span>
+
+          deployment --latest
+
+        </div>
+
+
+        <div class="terminal-success">
+
+          ✓ Deployment successful
+
+        </div>
+
+
+        <div class="terminal-info">
+
+          build: ATO-2026.10.07
+
+        </div>
+
+
+        <div class="terminal-info">
+
+          response: 42ms
+
+        </div>
+
+
+        <div class="terminal-purple">
+
+          environment: production
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       OVERVIEW
+  ========================= -->
+
+  <section
+    id="overview"
+    class="section"
+  >
+
+    <div class="section-heading">
+
+      <div>
+
+        <div class="section-title">
+          Infrastructure Overview
+        </div>
+
+        <div class="section-description">
+          Current cloud environment health
+        </div>
+
+      </div>
+
+
+      <div class="update-time">
+
+        UPDATED: JUST NOW
+
+      </div>
+
+    </div>
+
+
+
+    <div class="stats-grid">
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          ACTIVE SERVERS
+        </div>
+
+        <div class="stat-number">
+          24
+        </div>
+
+        <div class="stat-footer">
+
+          <span class="healthy">
+            ● Healthy
+          </span>
+
+          <span>
+            100%
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          CPU UTILIZATION
+        </div>
+
+        <div class="stat-number">
+          38%
+        </div>
+
+        <div class="stat-footer">
+
+          <span>
+            Average
+          </span>
+
+          <span class="improvement">
+            ↓ 4.2%
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          REQUESTS / MIN
+        </div>
+
+        <div class="stat-number">
+          18.7K
+        </div>
+
+        <div class="stat-footer">
+
+          <span>
+            Production
+          </span>
+
+          <span class="improvement">
+            ↑ 8.6%
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          SYSTEM UPTIME
+        </div>
+
+        <div class="stat-number">
+          99.99%
+        </div>
+
+        <div class="stat-footer">
+
+          <span>
+            Last 30 days
+          </span>
+
+          <span class="healthy">
+            Stable
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       INFRASTRUCTURE
+  ========================= -->
+
+  <section
+    id="infrastructure"
+    class="section"
+  >
+
+    <div class="section-heading">
+
+      <div>
+
+        <div class="section-title">
+          Cloud Infrastructure
+        </div>
+
+        <div class="section-description">
+          Core DevOps infrastructure components
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="technology-grid">
+
+
+      <div class="technology-card">
+
+        <div class="tech-icon">
+          ☁
+        </div>
+
+        <div class="tech-title">
+          Cloud Infrastructure
+        </div>
+
+        <div class="tech-description">
+
+          Scalable compute, networking,
+          load balancing and cloud resources
+          designed for reliable applications.
+
+        </div>
+
+        <div class="tech-progress">
+          <span style="width: 92%;"></span>
+        </div>
+
+      </div>
+
+
+
+      <div class="technology-card">
+
+        <div class="tech-icon">
+          ◈
+        </div>
+
+        <div class="tech-title">
+          Container Platform
+        </div>
+
+        <div class="tech-description">
+
+          Containerized workloads with
+          isolated environments and
+          consistent application deployments.
+
+        </div>
+
+        <div class="tech-progress">
+          <span style="width: 88%;"></span>
+        </div>
+
+      </div>
+
+
+
+      <div class="technology-card">
+
+        <div class="tech-icon">
+          ⚙
+        </div>
+
+        <div class="tech-title">
+          Infrastructure Automation
+        </div>
+
+        <div class="tech-description">
+
+          Automated provisioning, deployment
+          workflows and repeatable infrastructure
+          management.
+
+        </div>
+
+        <div class="tech-progress">
+          <span style="width: 95%;"></span>
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       CI/CD
+  ========================= -->
+
+  <section
+    id="pipeline"
+    class="section"
+  >
+
+    <div class="pipeline">
+
+      <div class="section-title">
+        CI/CD Deployment Pipeline
+      </div>
+
+      <div class="section-description">
+        Automated software delivery workflow
+      </div>
+
+
+      <div class="pipeline-flow">
+
+
+        <div class="pipeline-stage">
+
+          <div class="stage-number">
+            01
+          </div>
+
+          <div class="stage-name">
+            Git
+          </div>
+
+          <div class="stage-status">
+            ✓ Complete
+          </div>
+
+        </div>
+
+
+
+        <div class="pipeline-stage">
+
+          <div class="stage-number">
+            02
+          </div>
+
+          <div class="stage-name">
+            Build
+          </div>
+
+          <div class="stage-status">
+            ✓ Complete
+          </div>
+
+        </div>
+
+
+
+        <div class="pipeline-stage">
+
+          <div class="stage-number">
+            03
+          </div>
+
+          <div class="stage-name">
+            Test
+          </div>
+
+          <div class="stage-status">
+            ✓ Passed
+          </div>
+
+        </div>
+
+
+
+        <div class="pipeline-stage">
+
+          <div class="stage-number">
+            04
+          </div>
+
+          <div class="stage-name">
+            Deploy
+          </div>
+
+          <div class="stage-status">
+            ✓ Complete
+          </div>
+
+        </div>
+
+
+
+        <div class="pipeline-stage">
+
+          <div class="stage-number">
+            05
+          </div>
+
+          <div class="stage-name">
+            Monitor
+          </div>
+
+          <div class="stage-status">
+            ● Active
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       ARCHITECTURE
+  ========================= -->
+
+  <section
+    id="architecture"
+    class="section"
+  >
+
+    <div class="architecture">
+
+      <div class="section-title">
+        Cloud Application Architecture
+      </div>
+
+      <div class="section-description">
+        High-level application delivery flow
+      </div>
+
+
+      <div class="architecture-flow">
+
+
+        <div class="architecture-node">
+
+          <div class="node-icon">
+            🌐
+          </div>
+
+          <div class="node-title">
+            Users
+          </div>
+
+          <div class="node-subtitle">
+            Internet Traffic
+          </div>
+
+        </div>
+
+
+        <div class="arrow">
+          →
+        </div>
+
+
+        <div class="architecture-node">
+
+          <div class="node-icon">
+            ⚖
+          </div>
+
+          <div class="node-title">
+            Load Balancer
+          </div>
+
+          <div class="node-subtitle">
+            Traffic Routing
+          </div>
+
+        </div>
+
+
+        <div class="arrow">
+          →
+        </div>
+
+
+        <div class="architecture-node">
+
+          <div class="node-icon">
+            🖥
+          </div>
+
+          <div class="node-title">
+            App Servers
+          </div>
+
+          <div class="node-subtitle">
+            Scalable Compute
+          </div>
+
+        </div>
+
+
+        <div class="arrow">
+          →
+        </div>
+
+
+        <div class="architecture-node">
+
+          <div class="node-icon">
+            🗄
+          </div>
+
+          <div class="node-title">
+            Database
+          </div>
+
+          <div class="node-subtitle">
+            Persistent Storage
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div>
+
+      <span class="footer-brand">
+
+        Aarti<span>TechOps</span>
+
+      </span>
+
+      &nbsp; • &nbsp;
+
+      Cloud & DevOps Engineering
+
+    </div>
+
+
+    <div>
+
+      AWS • Docker • Kubernetes • Jenkins • CI/CD
+
+    </div>
+
+  </footer>
+
+
+</body>
+
+</html>
+
